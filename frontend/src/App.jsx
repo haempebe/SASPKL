@@ -1,17 +1,15 @@
-import "./App.css";
-import Navbar from "./components/navbar";
-import Form from "./components/form";
-import Table from "./components/table";
-import Footer from './components/footer';
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Dashboard from "./pages/dashboard";
+import LoginPage from "./pages/loginPage";
 
 function App() {
   return (
-    <>
-      <Navbar />
-      <Form />
-      <Table />
-      <Footer />
-    </>
+    <Router>
+      <Routes>
+        <Route path="/" element={<Dashboard />} />
+        <Route path="/login" element={<LoginPage />} />
+      </Routes>
+    </Router>
   );
 }
 
