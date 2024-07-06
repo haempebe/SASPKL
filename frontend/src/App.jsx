@@ -1,9 +1,8 @@
 import "./App.css";
-import Login from "./components/login";
 function App() {
   return (
     <>
-      <Login />
+      <div>ini dashboard index html atau main</div>
     </>
   );
 }
