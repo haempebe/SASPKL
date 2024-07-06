@@ -42,7 +42,7 @@ function Table() {
                     distracted by the readable content of a page when looking at
                     its layout.
                   </td>
-                  <td>
+                  <td className="flex">
                     <button className="btn btn-success me-2">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
