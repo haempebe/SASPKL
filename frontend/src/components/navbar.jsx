@@ -1,6 +1,6 @@
 function Navbar() {
   return (
-    <div className="bg-neutral">
+    <div className="bg-neutral" data-theme="dark">
       <div className="container mx-auto">
         <div className="navbar">
           <div className="navbar-start">

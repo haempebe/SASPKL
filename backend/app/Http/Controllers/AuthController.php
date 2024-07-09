@@ -28,15 +28,30 @@ class AuthController extends Controller
         return $this->respondWithToken($token);
     }
 
-    public function login()
+    public function login(Request $request)
     {
+        $validator = Validator::make($request->all(), [
+            "email" => "required",
+            "password" => "required",
+        ], [
+            "email.required" => "email harus memasukkan",
+            "password.required" => "Password harus diisi",
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json($validator->errors(), 422);
+        }
         $credentials = request(['email', 'password']);
 
         if (!$token = auth()->attempt($credentials)) {
-            return response()->json(['error' => 'Unauthorized'], 401);
+            return response()->json(['error' => 'Tidak sesuai dengan akun yang ada'], 401);
         }
 
-        return $this->respondWithToken($token);
+        return response()->json([
+            'success' => true,
+            'user' => auth()->user(),
+            'token' => $token
+        ], 200);
     }
 
 
