@@ -10,6 +10,9 @@ function Navbar() {
         <a className="btn btn-ghost text-xl">SAS-PKL</a>
       </div>
       <div className="navbar-end">
+        <div className="me-3">
+          <Theme />
+        </div>
         <div className="dropdown dropdown-end">
           <div
             tabIndex={0}
@@ -32,11 +35,6 @@ function Navbar() {
             </li>
             <li>
               <a>Logout</a>
-            </li>
-            <li className="text-center">
-              <div className="bg-base-300 py-5">
-                <Theme />
-              </div>
             </li>
           </ul>
         </div>
