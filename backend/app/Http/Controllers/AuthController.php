@@ -34,7 +34,7 @@ class AuthController extends Controller
             "email" => "required",
             "password" => "required",
         ], [
-            "email.required" => "email harus memasukkan",
+            "email.required" => "Email harus diisi",
             "password.required" => "Password harus diisi",
         ]);
 
@@ -44,7 +44,7 @@ class AuthController extends Controller
         $credentials = request(['email', 'password']);
 
         if (!$token = auth()->attempt($credentials)) {
-            return response()->json(['error' => 'Tidak sesuai dengan akun yang ada'], 401);
+            return response()->json(['error' => 'Tidak sesuai dengan yang kami simpan'], 401);
         }
 
         return response()->json([
