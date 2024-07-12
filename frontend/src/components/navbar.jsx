@@ -3,8 +3,7 @@ import Theme from "./theme";
 function Navbar() {
   return (
     <div
-      className="navbar bg-neutral container mx-auto mt-10 rounded-xl"
-      data-theme="dark"
+      className="navbar bg-base-300 container mx-auto mt-10 rounded-xl"
     >
       <div className="navbar-start">
         <a className="btn btn-ghost text-xl">SAS-PKL</a>
@@ -28,7 +27,7 @@ function Navbar() {
           </div>
           <ul
             tabIndex={0}
-            className="menu menu-sm dropdown-content bg-neutral rounded-box z-[1] mt-3 w-52 p-2 shadow"
+            className="menu menu-sm dropdown-content bg-base-300 rounded-box z-[1] mt-3 w-52 p-2 shadow"
           >
             <li>
               <a>Profile</a>
