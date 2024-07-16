@@ -2,9 +2,9 @@ function Table() {
   return (
     <div className="container mx-auto mt-10">
       <div className="mockup-window md:w-full bg-base-300 mt-10">
-        <div className="bg-base-200 px-5 py-5">
+        <div className="px-5 py-5">
           <div className="w-full">
-            <table className="table">
+            <table className="table bg-base-200 ">
               {/* head */}
               <thead>
                 <tr>

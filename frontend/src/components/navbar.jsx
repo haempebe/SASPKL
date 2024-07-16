@@ -1,10 +1,36 @@
 import Theme from "./theme";
+import useAuth from "../utils/useAuth";
+import { useNavigate } from "react-router-dom";
+import axios from "../api/axios";
+const LOGOUT_URL = "/logout ";
 
 function Navbar() {
+  const { setAuth } = useAuth();
+  const navigate = useNavigate();
+  const token = localStorage.getItem("token");
+
+  const handleFormLogout = async (e) => {
+    e.preventDefault();
+    try {
+      await axios.post(
+        LOGOUT_URL,
+        {},
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      localStorage.removeItem("token");
+      setAuth({});
+      navigate("/login");
+    } catch (error) {
+      console.error(error.response.data);
+    }
+  };
   return (
-    <div
-      className="navbar bg-base-300 container mx-auto mt-10 rounded-xl"
-    >
+    <div className="navbar bg-base-300 container mx-auto mt-10 rounded-xl">
       <div className="navbar-start">
         <a className="btn btn-ghost text-xl">SAS-PKL</a>
       </div>
@@ -33,7 +59,9 @@ function Navbar() {
               <a>Profile</a>
             </li>
             <li>
-              <a>Logout</a>
+              <form onSubmit={handleFormLogout} className="card-body">
+                <button type="submit">Logout</button>
+              </form>
             </li>
           </ul>
         </div>

@@ -1,20 +1,26 @@
 import { useState, useEffect } from "react";
+import useAuth from "../utils/useAuth";
+import { useLocation, useNavigate } from "react-router-dom";
 import Theme from "./theme";
-import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import axios from "../api/axios";
 
-function Login() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [validation, setValidation] = useState([]);
+const LOGIN_URL = "/auth/login";
+
+const Login = () => {
   const [see, setSee] = useState("password");
   const [logo, setLogo] = useState(
     JSON.parse(localStorage.getItem("islight"))
       ? "/public/assets/img/logoUtama.png"
       : "/public/assets/img/logoPutih.png"
   );
+  const { setAuth } = useAuth();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [validation, setValidation] = useState([]);
 
   const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
 
   const handleFormLogin = async (e) => {
     e.preventDefault();
@@ -23,12 +29,16 @@ function Login() {
     formData.append("password", password);
 
     try {
-      const response = await axios.post(
-        "http://127.0.0.1/SASPKL/backend/public/api/auth/login",
-        formData
-      );
+      const response = await axios.post(LOGIN_URL, formData, {
+        headers: { "Content-Type": "application/json" },
+        withCredentials: true,
+      });
       localStorage.setItem("token", response.data.token);
-      navigate("/");
+      console.log(JSON.stringify(response?.data));
+      const accessToken = response?.data?.token;
+      const role = response?.data?.user.role;
+      setAuth({ email, password, role, accessToken });
+      navigate(from, { replace: true });
     } catch (error) {
       setValidation(error.response.data);
     }
@@ -37,7 +47,6 @@ function Login() {
   const handlePasswordVisibility = (e) => {
     setSee(e.target.checked ? "text" : "password");
   };
-
   useEffect(() => {
     const handleStorageChange = () => {
       setLogo(
@@ -102,6 +111,7 @@ function Login() {
                       className="grow"
                       id="passwordInput"
                       value={password}
+                      autoComplete="off"
                       onChange={(e) => setPassword(e.target.value)}
                     />
                     <label className="swap swap-rotate">
@@ -172,5 +182,5 @@ function Login() {
       </div>
     </>
   );
-}
+};
 export default Login;
