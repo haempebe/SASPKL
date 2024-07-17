@@ -26,6 +26,9 @@ function Navbar() {
       setAuth({});
       navigate("/login");
     } catch (error) {
+      localStorage.removeItem("token");
+      setAuth({});
+      navigate("/login");
       console.error(error.response.data);
     }
   };

@@ -4,7 +4,6 @@ import DashboardAdmin from "./pages/dashboardAdmin";
 import DashboardAdminTendik from "./pages/dasboardAdminTendik";
 import LoginPage from "./pages/loginPage";
 import Registerpage from "./pages/registerpage";
-import Coba from "./pages/coba";
 import Layout from "./components/layout";
 import RequireAuth from "./utils/requireAuth";
 import DashboardGuru from "./pages/dashboardGuru";
@@ -16,7 +15,6 @@ function App() {
       <Route element={<RequireAuth />}>
         <Route element={<Layout />}>
           <Route path="/" element={<DashboardSiswa />} />
-          <Route path="/coba" element={<Coba />} />
           <Route path="/dashboard-Guru" element={<DashboardGuru />} />
         </Route>
         <Route path="/dashboard-admin" element={<DashboardAdmin />} />
