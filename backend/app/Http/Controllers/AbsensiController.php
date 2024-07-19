@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use App\Models\Absensi;
 use Illuminate\Http\Request;
 use App\Http\Requests\AbsensiRequest;
@@ -13,22 +14,33 @@ class AbsensiController extends Controller
 {
     public function index()
     {
-        $absensi = Absensi::all();
+        $absensi = Absensi::where('siswa_id', auth()->user()->id)->whereDate('jam_masuk', Carbon::today())->get();
         return response()->json(['data' => $absensi], 200);
     }
     public function store(AbsensiRequest $request)
     {
         $request->validated();
         $fotoAbsensi = $request->file("foto")->store("absensiSASPKL");
+        $jam_masuk = Carbon::now();
+
+        $sudahAbsensi = Absensi::whereDate('jam_masuk', '=', Carbon::today())
+            ->where('siswa_id', auth()->user()->id)
+            ->first();
+
+        if ($sudahAbsensi) {
+            return response()->json(['message' => 'Anda sudah absen masuk hari ini.']);
+        }
+
         $absensi = Absensi::create([
             'siswa_id' => auth()->user()->id,
             'foto' => $fotoAbsensi,
             'keterangan' => $request->keterangan,
+            'jam_masuk' => $jam_masuk,
         ]);
         return response()->json(['message' => 'Absensi berhasil dilakukan', 'data' => $absensi], 201);
     }
 
-    public function showbyid($id)
+    public function show($id)
     {
         $absensi = Absensi::find($id);
         if (!$absensi) {
