@@ -1,7 +1,7 @@
-function ModalCreateTendik() {
+function ModalCreateSiswa() {
   return (
     <div>
-      <dialog id="modal_create_tendik" className="modal modal-middle">
+      <dialog id="modal_create_siswa" className="modal modal-middle">
         <div className="sm:container mx-3 sm:mx-auto modal-box p-0 shadow-none">
           <div className="mockup-window md:w-full bg-base-300 overflow-y-scroll max-h-[600px] lg:max-h-[900px]">
             <div className="bg-base-200 px-5 py-5">
@@ -72,11 +72,18 @@ function ModalCreateTendik() {
                 <input type="password" placeholder="" className="grow" />
               </label>
               <p className="mt-5">Role</p>
-              <input
-                type="text"
-                value={"Tendik"}
-                className="input flex w-full mt-5"
-              />
+              <input type="text" value={"Siswa"} className="input flex w-full mt-5" />
+              <p className="mt-5">Pengampu</p>
+              <select className="select flex w-full mt-5">
+                <option disabled selected>
+                  --
+                </option>
+                <option>Homer</option>
+                <option>Marge</option>
+                <option>Bart</option>
+                <option>Lisa</option>
+                <option>Maggie</option>
+              </select>
               <button className="btn btn-success mt-5">Create</button>
             </div>
           </div>
@@ -95,4 +102,4 @@ function ModalCreateTendik() {
   );
 }
 
-export default ModalCreateTendik;
+export default ModalCreateSiswa;

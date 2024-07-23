@@ -1,11 +1,17 @@
 import { useState } from "react";
+import { NavLink, useLocation } from "react-router-dom";
 import Theme from "./theme";
 
 const Sidebar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const location = useLocation();
 
   const toggleSidebar = () => {
     setIsOpen(!isOpen);
+  };
+
+  const linkClasses = (path) => {
+    return location.pathname === path ? "bg-base-300" : "text-gray-700 dark:text-gray-400";
   };
 
   return (
@@ -83,7 +89,7 @@ const Sidebar = () => {
         <div className="h-full px-3 py-4 overflow-y-auto bg-base-200">
           <ul className="space-y-2">
             <li>
-              <a href="#" className="flex items-center p-2 rounded-lg group">
+              <NavLink to="#" className={`flex items-center p-2 rounded-lg group ${linkClasses("#")}`}>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="24"
@@ -103,10 +109,10 @@ const Sidebar = () => {
                   <path d="M15 4h4a1 1 0 0 1 1 1v2a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1v-2a1 1 0 0 1 1 -1" />
                 </svg>
                 <span className="ms-3">Dashboard</span>
-              </a>
+              </NavLink>
             </li>
             <li>
-              <a href="#" className="flex items-center p-2 rounded-lg group">
+              <NavLink to="/dashboard-admin" className={`flex items-center p-2 rounded-lg group mt-5 ${linkClasses("/dashboard-admin")}`}>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="24"
@@ -126,10 +132,10 @@ const Sidebar = () => {
                   <path d="M15 4h4a1 1 0 0 1 1 1v2a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1v-2a1 1 0 0 1 1 -1" />
                 </svg>
                 <span className="ms-3">Dashboard</span>
-              </a>
+              </NavLink>
             </li>
             <li>
-              <a href="#" className="flex items-center p-2 rounded-lg group">
+              <NavLink to="/dashboard-admin-tendik" className={`flex items-center p-2 rounded-lg group ${linkClasses("/dashboard-admin-tendik")}`}>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="24"
@@ -147,10 +153,10 @@ const Sidebar = () => {
                   <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
                 </svg>
                 <span className="ms-3">Tendik</span>
-              </a>
+              </NavLink>
             </li>
             <li>
-              <a href="#" className="flex items-center p-2 rounded-lg group">
+              <NavLink to="/dashboard-admin-siswa" className={`flex items-center p-2 rounded-lg group ${linkClasses("/dashboard-admin-siswa")}`}>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="24"
@@ -168,10 +174,10 @@ const Sidebar = () => {
                   <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
                 </svg>
                 <span className="ms-3">Siswa</span>
-              </a>
+              </NavLink>
             </li>
             <li>
-              <a href="#" className="flex items-center p-2 rounded-lg group">
+              <NavLink to="/user" className={`flex items-center p-2 rounded-lg group ${linkClasses("/user")}`}>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="24"
@@ -191,7 +197,7 @@ const Sidebar = () => {
                   <path d="M17 21l4 -4" />
                 </svg>
                 <span className="ms-3">User</span>
-              </a>
+              </NavLink>
             </li>
           </ul>
         </div>
