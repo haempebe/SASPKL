@@ -14,8 +14,12 @@ class AbsensiController extends Controller
 {
     public function index()
     {
-        $absensi = Absensi::where('siswa_id', auth()->user()->id)->whereDate('jam_masuk', Carbon::today())->get();
-        return response()->json(['data' => $absensi], 200);
+        $user = auth()->user();
+        $absensi = Absensi::where('siswa_id', auth()->user()->id)->whereDate('jam_masuk', Carbon::today())->get()->map(function ($item) use ($user) {
+            $item->name = $user->name;
+            return $item;
+        });
+        return response()->json($absensi, 200);
     }
     public function store(AbsensiRequest $request)
     {

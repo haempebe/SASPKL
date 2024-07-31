@@ -42,7 +42,6 @@ const Modal = () => {
         <form method="dialog" className="modal-backdrop">
           <button>close</button>
         </form>
-        
       </dialog>
     </div>
   );

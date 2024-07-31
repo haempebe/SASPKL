@@ -37,7 +37,11 @@ const Login = () => {
       console.log(JSON.stringify(response?.data));
       const accessToken = response?.data?.token;
       const role = response?.data?.user.role;
-      setAuth({ email, password, role, accessToken });
+      const name = response?.data?.user.name;
+      localStorage.setItem("name", name);
+      localStorage.setItem("role", role);
+      localStorage.setItem("email", email);
+      setAuth({ email, name, role, accessToken });
       navigate(from, { replace: true });
     } catch (error) {
       setValidation(error.response.data);

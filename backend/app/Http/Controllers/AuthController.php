@@ -44,7 +44,7 @@ class AuthController extends Controller
         $credentials = request(['email', 'password']);
 
         if (!$token = auth()->attempt($credentials)) {
-            return response()->json(['error' => 'Tidak sesuai dengan yang kami simpan'], 401);
+            return response()->json(['error' => 'Tidak cocok dengan yang dicatat'], 401);
         }
 
         return response()->json([
