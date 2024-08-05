@@ -2,7 +2,7 @@ function ModalCreateSiswa() {
   return (
     <div>
       <dialog id="modal_create_siswa" className="modal modal-middle">
-        <div className="sm:container mx-3 sm:mx-auto modal-box p-0 shadow-none">
+        <div className="sm:container mx-3 sm:mx-auto modal-box p-0 shadow-none px-6">
           <div className="mockup-window md:w-full bg-base-300 overflow-y-scroll max-h-[600px] lg:max-h-[900px]">
             <div className="bg-base-200 px-5 py-5">
               <p>Foto</p>

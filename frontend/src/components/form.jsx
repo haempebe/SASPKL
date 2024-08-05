@@ -32,7 +32,7 @@ const Form = ({ onAddAbsensi }) => {
   };
 
   return (
-    <div className="container mx-auto mt-10">
+    <div className="container mx-auto mt-10 px-6">
       <div className="mockup-window bg-base-300 mt-10">
         <form onSubmit={handleSubmit}>
           <div className="bg-base-200 px-5 py-5">
